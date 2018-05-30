@@ -1,0 +1,29 @@
+{
+  "name": "@webwallet/cryptools",
+  "version": "1.0.0",
+  "description": "Cryptographic tools for WebWallet modules.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webwallet/crypto.git"
+  },
+  "keywords": [
+    "webwallet",
+    "crypto",
+    "hashing",
+    "signing"
+  ],
+  "author": "webwallet.org",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webwallet/crypto/issues"
+  },
+  "homepage": "https://github.com/webwallet/crypto#readme",
+  "dependencies": {
+    "elliptic": "^6.4.0",
+    "ripemd160": "^2.0.1"
+  }
+}
