@@ -6,20 +6,21 @@ const createHash = require('../hashing').create
 
 function encode(hash, { prefix = '87', encoding = 'base58check' } = {}) {
   let encoded
+  let buffer
 
   switch (encoding) {
   case 'base58check': default:
-    encoded = bs58check.encode(new Buffer(prefix + hash, 'hex'))
+    buffer = Buffer.from(prefix + hash, 'hex')
+    encoded = bs58check.encode(buffer)
     break
   }
 
   return encoded
 }
 
-const generate = ((encode, { data, hashing, format = {} } = {}) => {
+const generate = ((encode, { data, hashing, format = {}, encodings = [] } = {}) => {
   let hashTypes = (hashing instanceof Array) ? hashing : ['sha256', 'ripemd160']
   let hashInput = data
-  let encodings = []
 
   if (typeof data === 'object') {
     hashInput = stringify(data)

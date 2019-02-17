@@ -6,10 +6,10 @@ const ripemd160 = require('ripemd160')
 const hashFunction = {
   sha256(data, encoding = 'hex') {
     return crypto.createHash('sha256')
-      .update(new Buffer(data, encoding)).digest('hex')
+      .update(Buffer.from(data, encoding)).digest('hex')
   },
   ripemd160(data, encoding = 'hex') {
-    return new ripemd160().update(new Buffer(data, encoding)).digest('hex')
+    return new ripemd160().update(Buffer.from(data, encoding)).digest('hex')
   }
 }
 
