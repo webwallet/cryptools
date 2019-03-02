@@ -1,7 +1,6 @@
 'use strict'
 
 const bs58check = require('bs58check')
-const stringify = require('json-stable-stringify')
 const createHash = require('../hashing').create
 
 function encode(hash, { prefix = '87', encoding = 'base58check' } = {}) {
@@ -18,19 +17,12 @@ function encode(hash, { prefix = '87', encoding = 'base58check' } = {}) {
   return encoded
 }
 
-const generate = ((encode, { data, hashing, format = {}, encodings = [] } = {}) => {
-  let hashTypes = (hashing instanceof Array) ? hashing : ['sha256', 'ripemd160']
-  let hashInput = data
+const generate = (({ data, hashing, format, encoder = encode, encodings = [] } = {}) => {
+  let hash = createHash({data, algorithms: hashing, encodings})
+  let address = encoder(hash, format)
 
-  if (typeof data === 'object') {
-    hashInput = stringify(data)
-    encodings.unshift('utf8')
-  }
-
-  let hash = createHash(hashInput, hashTypes, encodings)
-  let address = (format) ? encode(hash, format) : hash
   return address
-}).bind(null, encode)
+})
 
 function decode(address, { prefix = '87', encoding = 'base58check' } = {}) {
   let decoded
