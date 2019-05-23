@@ -18,7 +18,8 @@ function encode(hash, { prefix = '87', encoding = 'base58check' } = {}) {
 }
 
 const generate = (({ data, hashing, format, encoder = encode, encodings = [] } = {}) => {
-  let hash = createHash({data, algorithms: hashing, encodings})
+  let algorithms = hashing || 'sha256:ripemd160'
+  let hash = createHash({data, algorithms, encodings})
   let address = encoder(hash, format)
 
   return address
