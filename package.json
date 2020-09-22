@@ -24,7 +24,7 @@
   "homepage": "https://github.com/webwallet/crypto#readme",
   "dependencies": {
     "bs58check": "2.1.2",
-    "elliptic": "^6.4.0",
+    "elliptic": ">=6.5.3",
     "json-stable-stringify": "1.0.1",
     "ripemd160": "^2.0.1"
   }
